@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id ="root">
+        <div> {{first}} x {{second}} ?</div>
+        <form @submit="onSubmitForm">
+            <input type="number" ref="ans" v-model = "answer">
+            <button type="submit">입력</button>
+        </form>
+        <div v-if="clicked">
+            <p v-if="result"> 정답입니다! </p>
+            <p v-else> 오답입니다. 다시 푸세요! </p>
+        </div>
+        <!-- <div v-else>
+            <input type ="text" v-model="answer"/>
+            <button @click="onClickButton"> 입력! </button>
+            <p>{{result}}</p>
+        </div> -->
+    </div>
+    <script>
+        const app = new Vue({
+            el : '#root',
+            data : {
+                first : Math.ceil(Math.random() * 9),
+                second : Math.ceil(Math.random() * 9),
+                clicked : false,
+                result : false,
+                answer : ''
+            },
+            methods : {
+                // onClickButton() {
+                //     this.clicked = true;
+                //     console.log(this.answer);
+                //     if(this.answer == this.first * this.second) {
+                //         this.result = true;
+                //     } else {
+                //         this.result = false;
+                //     }
+                // },
+                // onClickDiv() {
+                //     this.clicked = false;
+                //     if(this.result) {
+                //         this.first = Math.ceil(Math.random() * 9);
+                //         this.second = Math.ceil(Math.random() * 9);
+                //     }
+                // },
+                onSubmitForm(e) {
+                    e.preventDefault(); //페이지 새로고침을 막음.
+                    if(parseInt(this.answer) === this.first * this.second) {
+                        this.result = true;
+                        this.clicked = true;
+                        this.first = Math.ceil(Math.random() * 9);
+                        this.second = Math.ceil(Math.random() * 9);
+                        this.answer = '';
+                        //태그에 접근하는 방법! 이것을 남용해서는 안됨.
+                        //ref를 이용해 불러오는 것임.
+                        this.$refs.ans.focus();
+                    } else {
+                        this.result = false;
+                        this.clicked = true;
+                        this.answer = '';
+                    }
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
