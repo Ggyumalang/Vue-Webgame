@@ -8,12 +8,13 @@
 </head>
 <body>
     <div id="app">
-        <word-relay></word-relay>
-        <word-relay></word-relay>
-        <word-relay></word-relay>
+        <word-relay start-word="시작"></word-relay>
+        <word-relay start-word="출발"></word-relay>
+        <word-relay start-word="스타트"></word-relay>
     </div>
     <script>
         Vue.component('word-relay', { //전역 컴포넌트
+            props : ['startWord'],
             template : `
                 <div>
                     <div>
@@ -29,7 +30,7 @@
             `,
             data() {
                 return {
-                    firstWord : '시작',
+                    firstWord : this.startWord,
                     word : '',
                     result : ''
                 }
