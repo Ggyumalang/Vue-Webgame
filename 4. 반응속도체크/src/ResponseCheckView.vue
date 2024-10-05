@@ -5,7 +5,7 @@
 </template>
   
   <script>
-  import ResponseCheck from '../ResponseCheck';
+  import ResponseCheck from './ResponseCheck';
   
   export default {
     components: {

@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import ResponseCheckView from './view/ResponseCheckView';
+import ResponseCheckView from './ResponseCheckView';
 
 export default {
   components: {

@@ -16,7 +16,15 @@ module.exports = {
         rules : [{
             test: /\.vue$/,
             loader: 'vue-loader',
-        }]
+        },
+        {
+            test: /\.css$/,
+            use: [
+                'vue-style-loader',
+                'css-loader'
+            ]
+        }
+    ]
     },
     plugins : [
         new VueLoaderPlugin(),
@@ -24,5 +32,13 @@ module.exports = {
     output : {
         filename: '[name].js', //app.js
         path: path.join(__dirname, 'dist')
+    },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'dist'), // 정적 파일을 서빙할 경로 설정
+        },
+        compress: true, // 압축 활성화
+        port: 8080, // 포트 설정
+        historyApiFallback: true, // Vue Router history 모드 지원
     }
 }
