@@ -49,7 +49,6 @@ export default {
             this.winBalls = [];
             this.bonusBall = null;
             this.redo = false;
-            this.showBalls();
         },
         showBalls() {
             for(let i = 0; i < this.winNumbers.length - 1; i++) {
@@ -71,8 +70,16 @@ export default {
             clearTimeout(t);
         })
     },
-    watch() {
-
+    //watch 는 최대한 주의해서 사용할 것 (즉, 어지간하면 사용을 권하지 않음. - 최후의 수단으로 사용할 것)
+    watch : {
+        //값을 감시하고자 하는 데이터명을 넣는다
+        bonusBall(value, oldValue) {
+            console.log(oldValue);
+            //winBalls 가 empty가 되면..
+            if(value == null) {
+                this.showBalls();
+            }
+        }
     }
 }
     
