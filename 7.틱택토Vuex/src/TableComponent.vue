@@ -1,10 +1,11 @@
 <template>
     <table>
-        <tr-component v-for="(rowData, index) in tableData" :row-index="index" :key="index"></tr-component>
+        <!-- <tr-component v-for="(rowData, index) in tableData" :row-index="index" :key="index"></tr-component> -->
+         <slot></slot>
     </table>
 </template>
 <script>
-    import { mapState } from 'vuex/dist/vuex.cjs.js';
+    // import { mapState } from 'vuex/dist/vuex.cjs.js';
     import TrComponent from './TrComponent'
 
     export default {
@@ -12,7 +13,7 @@
             TrComponent
         },
         computed : {
-            ...mapState(['tableData'])            
+            // ...mapState(['tableData'])            
         },
     }
 </script>

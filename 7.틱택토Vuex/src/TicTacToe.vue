@@ -1,7 +1,17 @@
 <template>
     <div>
       <div> {{ turn }}님의 턴입니다.</div>
-      <table-component></table-component>
+      <!-- 제어의 역전.. 원래 자식 컴포넌트에서 보여줘야할 것을 부모 컴포넌트에서 보여줌. 데이터를 부모의 것을 활용-->
+      <table-component>
+        <tr v-for= "(rowData, rowIndex) in tableData" :key="rowIndex">
+          <td @click="onClickTd(rowIndex, colIndex)" v-for = "(_, colIndex) in rowData" :key="colIndex"> {{ cellData }}</td>
+        </tr>
+      </table-component>
+       <!-- <table>
+        <tr v-for= "(_, rowIndex) in tableData" :key="rowIndex">
+          <td v-for = "(_, colIndex) in tableData" :key="colIndex"> {{  cellData }}</td>
+        </tr>
+       </table> -->
       <div v-if="winner"> {{ turnMessage }} </div>
     </div>
 </template>
